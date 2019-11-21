@@ -43,14 +43,8 @@ pipeline {
                 milestone(1)
                 withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     script {
-                        sh "ssh $USERNAME@$prod_ip \"docker pull apenjiyev/train-schedule:${env.BUILD_NUMBER}\""
-                        try {
-                            sh "ssh $USERNAME@$prod_ip \"docker stop train-schedule\""
-                            sh "ssh $USERNAME@$prod_ip \"docker rm train-schedule\""
-                        } catch (err) {
-                            echo: 'caught error: $err'
-                        }
-                        sh "ssh $USERNAME@$prod_ip \"docker run --restart always --name train-schedule -p 8080:8080 -d apenjiyev/train-schedule:${env.BUILD_NUMBER}\""
+                        sh "ssh $USERNAME@$prod_ip"
+                        
                     }
                 }
             }
