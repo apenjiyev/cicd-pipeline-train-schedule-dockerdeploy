@@ -50,7 +50,7 @@ pipeline {
                         } catch (err) {
                             echo: 'caught error: $err'
                         }
-                        sh "ssh$USERNAME@$prod_ip \"docker run --restart always --name train-schedule -p 8080:8080 -d apenjiyev/train-schedule:${env.BUILD_NUMBER}\""
+                        sh "ssh $USERNAME@$prod_ip \"docker run --restart always --name train-schedule -p 8080:8080 -d apenjiyev/train-schedule:${env.BUILD_NUMBER}\""
                     }
                 }
             }
